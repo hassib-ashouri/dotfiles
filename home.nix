@@ -7,8 +7,8 @@
       # this is internal compatibility configuration 
       # for home-manager, don't change this!
       stateVersion = "23.05";
-      username = "hassiba";
-      homeDirectory = "/Users/hassiba";
+      username = "hassibz";
+      homeDirectory = "/Users/hassibz";
       packages = with pkgs; [
         pkgs.git
       ];
