@@ -15,76 +15,94 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-vscode-extensions, determinate }:
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nixpkgs,
+      home-manager,
+      nix-vscode-extensions,
+      determinate,
+    }:
     let
-        input_user = "hassibz";
+      input_user = "hassibz";
       input_hostname = "Soummiehs-MacBook-Air";
       input_homeDirectory = "/Users/${input_user}";
-      configuration = { pkgs, ... }: {
+      configuration =
+        { pkgs, ... }:
+        {
 
-        # The platform the configuration will be used on.
-        # If you're on an Intel system, replace with "x86_64-darwin"
-        nixpkgs.hostPlatform = "aarch64-darwin";
+          # The platform the configuration will be used on.
+          # If you're on an Intel system, replace with "x86_64-darwin"
+          nixpkgs.hostPlatform = "aarch64-darwin";
 
-        system.stateVersion = 6;
+          system.stateVersion = 6;
 
-        # Declare the user that will be running `nix-darwin`.
-        users.users."${input_user}" = {
-          name = input_user;
-          home = "/Users/${input_user}";
-        };
-
-        # Create /etc/zshrc that loads the nix-darwin environment.
-        programs.zsh.enable = true;
-
-        environment.systemPackages = with pkgs; [
-          neofetch
-          vim
-          nixpkgs-fmt
-          discord
-          spotify
-          zoom-us
-          postman
-          docker
-          docker-compose
-          google-chrome
-          nodejs_22
-          arc-browser
-          inkscape
-        ];
-        homebrew = {
-          enable = true;
-          onActivation = {
-            # autoupdate homebrew on switch
-            autoUpdate = true;
-            cleanup = "uninstall";
-            upgrade = true;
+          # Declare the user that will be running `nix-darwin`.
+          users.users."${input_user}" = {
+            name = input_user;
+            home = "/Users/${input_user}";
           };
 
-          taps = [ ];
-          brews = [ "cowsay" ];
-          casks = [ "copilot" "notion" "chatgpt" "logi-options+" "tradingview" ];
-          masApps = {
-            "PixelMator" = 1289583905;
-          };
-        };
+          # Create /etc/zshrc that loads the nix-darwin environment.
+          programs.zsh.enable = true;
 
-        nixpkgs = {
-          config.allowUnfree = true;
-          overlays = [
-            nix-vscode-extensions.overlays.default
+          environment.systemPackages = with pkgs; [
+            neofetch
+            vim
+            nixfmt-rfc-style
+            discord
+            spotify
+            zoom-us
+            postman
+            docker
+            docker-compose
+            google-chrome
+            nodejs_22
+            arc-browser
+            inkscape
           ];
-        };
+          homebrew = {
+            enable = true;
+            onActivation = {
+              # autoupdate homebrew on switch
+              autoUpdate = true;
+              cleanup = "uninstall";
+              upgrade = true;
+            };
 
-        # key remaping
-        system = {
-          defaults = { dock.autohide = true; };
-          keyboard = {
-            enableKeyMapping = true;
-            remapCapsLockToControl = true;
+            taps = [ ];
+            brews = [ "cowsay" ];
+            casks = [
+              "copilot"
+              "notion"
+              "chatgpt"
+              "logi-options+"
+              "tradingview"
+            ];
+            masApps = {
+              "PixelMator" = 1289583905;
+            };
+          };
+
+          nixpkgs = {
+            config.allowUnfree = true;
+            overlays = [
+              nix-vscode-extensions.overlays.default
+            ];
+          };
+
+          # key remaping
+          system = {
+            defaults = {
+              dock.autohide = true;
+            };
+            keyboard = {
+              enableKeyMapping = true;
+              remapCapsLockToControl = true;
+            };
           };
         };
-      };
     in
     {
       # darwinConfigurations."HOST NAME" = nix-darwin.lib.darwinSystem {
@@ -104,4 +122,3 @@
       };
     };
 }
-

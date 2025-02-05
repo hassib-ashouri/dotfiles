@@ -1,27 +1,26 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Let home-manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home =
-    {
-      # this is internal compatibility configuration 
-      # for home-manager, don't change this!
-      stateVersion = "23.05";
-      username = "hassibz";
-      homeDirectory = "/Users/hassibz";
-      packages = with pkgs; [
-        pkgs.git
-      ];
-      sessionVariables = {
-        EDITOR = "vim";
-      };
-      file = {
-        ".vimrc".source = ./vim_config;
-        ".config/git/config".source = ./git_config;
-        ".config/git/ignore".source = ./git_ignore;
-      };
+  home = {
+    # this is internal compatibility configuration
+    # for home-manager, don't change this!
+    stateVersion = "23.05";
+    username = "hassibz";
+    homeDirectory = "/Users/hassibz";
+    packages = with pkgs; [
+      pkgs.git
+    ];
+    sessionVariables = {
+      EDITOR = "vim";
     };
-
+    file = {
+      ".vimrc".source = ./vim_config;
+      ".config/git/config".source = ./git_config;
+      ".config/git/ignore".source = ./git_ignore;
+    };
+  };
 
   programs = {
     zsh = {
