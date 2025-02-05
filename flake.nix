@@ -17,18 +17,21 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-vscode-extensions, determinate }:
     let
+        input_user = "hassibz";
+      input_hostname = "Soummiehs-MacBook-Air";
+      input_homeDirectory = "/Users/${input_user}";
       configuration = { pkgs, ... }: {
 
         # The platform the configuration will be used on.
         # If you're on an Intel system, replace with "x86_64-darwin"
         nixpkgs.hostPlatform = "aarch64-darwin";
 
-        system.stateVersion = 5;
+        system.stateVersion = 6;
 
         # Declare the user that will be running `nix-darwin`.
-        users.users.hassibz = {
-          name = "hassibz";
-          home = "/Users/hassibz";
+        users.users."${input_user}" = {
+          name = input_user;
+          home = "/Users/${input_user}";
         };
 
         # Create /etc/zshrc that loads the nix-darwin environment.
@@ -85,7 +88,7 @@
     in
     {
       # darwinConfigurations."HOST NAME" = nix-darwin.lib.darwinSystem {
-      darwinConfigurations."Soummiehs-MacBook-Air" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."${input_hostname}" = nix-darwin.lib.darwinSystem {
         system = "pinkair";
         modules = [
           determinate.darwinModules.default
@@ -95,7 +98,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.verbose = true;
-            home-manager.users.hassibz = import ./home.nix;
+            home-manager.users."${input_user}" = import ./home.nix;
           }
         ];
       };
