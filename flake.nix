@@ -32,6 +32,8 @@
         { pkgs, ... }:
         {
 
+          nix.enable = false;
+
           # The platform the configuration will be used on.
           # If you're on an Intel system, replace with "x86_64-darwin"
           nixpkgs.hostPlatform = "aarch64-darwin";
@@ -113,7 +115,6 @@
       darwinConfigurations."${input_hostname}" = nix-darwin.lib.darwinSystem {
         system = "pinkair";
         modules = [
-          determinate.darwinModules.default
           configuration
           home-manager.darwinModules.home-manager
           {
