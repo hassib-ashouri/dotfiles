@@ -50,6 +50,7 @@
           environment.systemPackages = with pkgs; [
             neofetch
             vim
+            neovim
             nixfmt-rfc-style
             discord
             spotify
@@ -61,6 +62,7 @@
             nodejs_22
             arc-browser
             inkscape
+            raycast
           ];
           homebrew = {
             enable = true;
@@ -79,6 +81,8 @@
               "chatgpt"
               "logi-options+"
               "tradingview"
+              "tailscale"
+              "windows-app"
             ];
             masApps = {
               "PixelMator" = 1289583905;
