@@ -1,24 +1,23 @@
 {
-    "$schema": "vscode://schemas/settings/default",
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "files.autoSave": "onFocusChange",
-    "editor.wordWrap": "on",
-    "editor.minimap.enabled": false,
-    "files.exclude": {
-        "**/.git": true,
-        "**/.DS_Store": true
-    },
-    "editor.formatOnSave": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "after": [
-                "<Esc>"
-            ],
-            "before": [
-                "j",
-                "j"
-            ]
-        }
-    ]
+  "$schema": "vscode://schemas/settings/default",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "files.autoSave": "onFocusChange",
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "editor.formatOnSave": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": ["<Esc>"],
+      "before": ["j", "j"]
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
 }

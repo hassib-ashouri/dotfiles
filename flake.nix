@@ -65,6 +65,13 @@
             arc-browser
             inkscape
             raycast
+            pnpm_10
+            awscli2
+            opentofu
+            code-cursor
+            vscode
+            python312
+            uv
           ];
           homebrew = {
             enable = true;
