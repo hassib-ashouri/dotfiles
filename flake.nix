@@ -97,6 +97,7 @@
               "teamviewer"
               "1password"
               "spotify"
+              "xnapper"
             ];
             masApps = {
               "PixelMator" = 1289583905;
