@@ -7,8 +7,8 @@
     # this is internal compatibility configuration
     # for home-manager, don't change this!
     stateVersion = "23.05";
-    username = "hassibz";
-    homeDirectory = "/Users/hassibz";
+    username = "hassiba";
+    homeDirectory = "/Users/hassiba";
     packages = with pkgs; [
       pkgs.git
     ];
@@ -29,8 +29,6 @@
       enable = true;
       shellAliases = {
         switch = "darwin-rebuild switch --flake ~/.config/nix";
-        # since cursor is not installed via home manager, we have to manually copy the settings files and pull the extensions from vscode
-        c = "cursor ";
       };
     };
 
@@ -42,14 +40,14 @@
         userSettings = builtins.fromJSON (builtins.readFile ./vscode_settings.json);
         keybindings = builtins.fromJSON (builtins.readFile ./vscode_keybindings.json);
         extensions = with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide
-        dracula-theme.theme-dracula
-        vscodevim.vim
-        bradlc.vscode-tailwindcss
-        astro-build.astro-vscode
-        github.copilot-chat
-        hashicorp.terraform
-      ];
+          jnoortheen.nix-ide
+          dracula-theme.theme-dracula
+          vscodevim.vim
+          bradlc.vscode-tailwindcss
+          astro-build.astro-vscode
+          github.copilot-chat
+          hashicorp.terraform
+        ];
       };
     };
   };

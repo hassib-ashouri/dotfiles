@@ -1,0 +1,12 @@
+# GitHub configuration
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.config/nix/.keys/github_key
+    IdentitiesOnly yes
+
+# AWS EC2 configuration
+Host ec2-*
+    User ec2-user
+    IdentityFile ~/.config/nix/keys/aws-ssh
+    IdentitiesOnly yes

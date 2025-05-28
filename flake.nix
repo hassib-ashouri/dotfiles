@@ -25,13 +25,14 @@
       determinate,
     }:
     let
-      input_user = "hassibz";
-      input_hostname = "Soummiehs-MacBook-Air";
+      input_user = "hassiba";
+      input_hostname = "bluefish";
       input_homeDirectory = "/Users/${input_user}";
       configuration =
         { pkgs, ... }:
         {
 
+          # leave nix disabled because it is managed by determinate
           nix.enable = false;
 
           # The platform the configuration will be used on.
@@ -55,8 +56,6 @@
             neovim
             nixfmt-rfc-style
             discord
-            spotify
-            zoom-us
             postman
             docker
             docker-compose
@@ -68,10 +67,13 @@
             pnpm_10
             awscli2
             opentofu
-            code-cursor
-            vscode
-            python312
-            uv
+            slack
+            nil
+            # for python
+            # python312Full
+            # python312Packages.pip
+            # python312Packages.setuptools
+            # uv
           ];
           homebrew = {
             enable = true;
@@ -92,6 +94,9 @@
               "tradingview"
               "tailscale"
               "windows-app"
+              "teamviewer"
+              "1password"
+              "spotify"
             ];
             masApps = {
               "PixelMator" = 1289583905;
@@ -107,8 +112,24 @@
 
           # key remaping
           system = {
+            primaryUser = input_user;
+
             defaults = {
-              dock.autohide = true;
+              dock = {
+                autohide = true;
+                orientation = "right";
+                persistent-apps = [
+                  "/System/Applications/Mail.app"
+                  "/System/Applications/Calendar.app"
+                  "/System/Applications/Notion.app"
+                ];
+              };
+              NSGlobalDomain = {
+                InitialKeyRepeat = 15; # Normal minimum is 15 (225ms)
+                KeyRepeat = 2; # Normal minimum is 2 (30ms)
+                ApplePressAndHoldEnabled = false; # This disables the character picker and enables key repeat
+                NSAutomaticSpellingCorrectionEnabled = false; # Disables auto-correction
+              };
             };
             keyboard = {
               enableKeyMapping = true;
@@ -120,7 +141,6 @@
     {
       # darwinConfigurations."HOST NAME" = nix-darwin.lib.darwinSystem {
       darwinConfigurations."${input_hostname}" = nix-darwin.lib.darwinSystem {
-        system = "pinkair";
         modules = [
           configuration
           home-manager.darwinModules.home-manager
